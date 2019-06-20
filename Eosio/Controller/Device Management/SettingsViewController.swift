@@ -12,7 +12,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var tableView: UITableView!
     
-    var tableData = ["Developer Tools"]
+    var tableData = ["Developer Tools", "Validation Endpoint"]
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -56,6 +56,12 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
  
             let vc = UIStoryboard(name: "Settings", bundle: nil).instantiateViewController(withIdentifier: "developerSettingsVC") as! DeveloperSettingsViewController
             self.navigationController?.pushViewController(vc, animated: true)
+            
+        } else if indexPath.row == 1 {
+            
+            let vc = UIStoryboard(name: "Settings", bundle: nil).instantiateViewController(withIdentifier: "validationEndpointSettingsVC") as! ValidationEndpointSettingsViewController
+            self.navigationController?.pushViewController(vc, animated: true)
+        
         }
     }
     

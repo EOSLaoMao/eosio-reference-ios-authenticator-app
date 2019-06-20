@@ -20,7 +20,7 @@
         <!--Settings-->
         <scene sceneID="E93-Hs-Ncb">
             <objects>
-                <viewController storyboardIdentifier="settingsVC" title="Settings" id="nVX-Hf-fi6" customClass="SettingsViewController" customModule="EosioReferenceWallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="settingsVC" title="Settings" id="nVX-Hf-fi6" customClass="SettingsViewController" customModule="EosioReferenceAuthenticator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6Jh-UD-bv2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -29,7 +29,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="583"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ItemCell" rowHeight="105" id="SfS-mY-dy2" customClass="SettingsItemTableViewCell" customModule="EosioReferenceWallet" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ItemCell" rowHeight="105" id="SfS-mY-dy2" customClass="SettingsItemTableViewCell" customModule="EosioReferenceAuthenticator" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="105"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SfS-mY-dy2" id="GFV-CC-EY4">
@@ -97,7 +97,7 @@
         <!--Developer Settings View Controller-->
         <scene sceneID="MLV-EZ-hNe">
             <objects>
-                <viewController storyboardIdentifier="developerSettingsVC" id="lQw-lF-JKk" customClass="DeveloperSettingsViewController" customModule="EosioReferenceWallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="developerSettingsVC" id="lQw-lF-JKk" customClass="DeveloperSettingsViewController" customModule="EosioReferenceAuthenticator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8QW-33-KIh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -110,13 +110,13 @@
                                 </connections>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iOM-xP-hj3">
-                                <rect key="frame" x="24" y="128" width="327" height="72.5"/>
+                                <rect key="frame" x="24" y="128" width="327" height="69"/>
                                 <attributedString key="attributedText">
                                     <fragment>
                                         <string key="content">By turning this on, you will be bypassing all security measures which could lead to disastrous results. Please use with caution.</string>
                                         <attributes>
                                             <color key="NSColor" red="0.40000000000000002" green="0.4823529411764706" blue="0.61176470588235299" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <font key="NSFont" size="16" name="SourceSansPro-Regular"/>
+                                            <font key="NSFont" metaFont="system" size="16"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.2" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
@@ -124,16 +124,16 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Domain or Subdomain" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zAW-Sq-hnK">
-                                <rect key="frame" x="26" y="244.5" width="116" height="15.5"/>
+                                <rect key="frame" x="26" y="241" width="116" height="15.5"/>
                                 <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="12"/>
                                 <color key="textColor" red="0.56517881160000005" green="0.64681792260000004" blue="0.76471829410000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UjQ-n5-0eE">
-                                <rect key="frame" x="16" y="343" width="343" height="304"/>
+                                <rect key="frame" x="16" y="339.5" width="343" height="307.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DomainCell" rowHeight="90" id="HE3-sB-W4o" customClass="DomainTableViewCell" customModule="EosioReferenceWallet" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DomainCell" rowHeight="90" id="HE3-sB-W4o" customClass="DomainTableViewCell" customModule="EosioReferenceAuthenticator" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="343" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HE3-sB-W4o" id="XCh-YX-Fbx">
@@ -191,7 +191,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="6Ur-G0-PdT">
-                                <rect key="frame" x="40" y="260" width="311" height="40"/>
+                                <rect key="frame" x="40" y="256.5" width="311" height="40"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uwm-HI-9V5">
                                         <rect key="frame" x="0.0" y="0.0" width="203" height="40"/>
@@ -199,7 +199,7 @@
                                         <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" smartQuotesType="no" textContentType="url"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AjL-vF-2oz" customClass="DarkBlueButtonWhiteTitle" customModule="EosioReferenceWallet" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AjL-vF-2oz" customClass="DarkBlueButtonWhiteTitle" customModule="EosioReferenceAuthenticator" customModuleProvider="target">
                                         <rect key="frame" x="211" y="0.0" width="100" height="40"/>
                                         <color key="backgroundColor" red="0.122942917" green="0.1954764128" blue="0.42355126139999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
@@ -217,7 +217,7 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0na-8q-1lZ">
-                                <rect key="frame" x="24" y="308" width="327" height="1"/>
+                                <rect key="frame" x="24" y="304.5" width="327" height="1"/>
                                 <color key="backgroundColor" red="0.035921297970000002" green="0.07422567159" blue="0.1843244433" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="Tgx-18-yFI"/>
@@ -260,6 +260,74 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bb2-J8-CWX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="872.79999999999995" y="209.14542728635683"/>
+        </scene>
+        <!--Validation Endpoint Settings View Controller-->
+        <scene sceneID="4cE-08-bZ8">
+            <objects>
+                <viewController storyboardIdentifier="validationEndpointSettingsVC" id="p70-bg-QN7" customClass="ValidationEndpointSettingsViewController" customModule="EosioReferenceAuthenticator" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oMq-E0-lAI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Domain or Subdomain" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="za1-5R-hTA">
+                                <rect key="frame" x="24" y="128.5" width="116" height="15.5"/>
+                                <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="12"/>
+                                <color key="textColor" red="0.56517881160000005" green="0.64681792260000004" blue="0.76471829410000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f4B-eG-Et0">
+                                <rect key="frame" x="30" y="151.5" width="213" height="40"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" smartQuotesType="no" textContentType="url"/>
+                            </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dcj-8T-qHV">
+                                <rect key="frame" x="24" y="199.5" width="327" height="1"/>
+                                <color key="backgroundColor" red="0.035921297970000002" green="0.07422567159" blue="0.1843244433" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="syx-gv-v7t"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A4a-gS-7X9" customClass="DarkBlueButtonWhiteTitle" customModule="EosioReferenceAuthenticator" customModuleProvider="target">
+                                <rect key="frame" x="251" y="151.5" width="100" height="40"/>
+                                <color key="backgroundColor" red="0.122942917" green="0.1954764128" blue="0.42355126139999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="CW8-La-qjT"/>
+                                    <constraint firstAttribute="height" constant="40" id="kj2-zU-y2C"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="14"/>
+                                <state key="normal" title="Add">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveButtonPressed:" destination="lQw-lF-JKk" eventType="touchUpInside" id="gCU-06-pnj"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="f4B-eG-Et0" firstAttribute="centerY" secondItem="A4a-gS-7X9" secondAttribute="centerY" id="0DA-uT-1fD"/>
+                            <constraint firstItem="za1-5R-hTA" firstAttribute="leading" secondItem="dcj-8T-qHV" secondAttribute="leading" id="Jc4-nV-mMD"/>
+                            <constraint firstItem="dcj-8T-qHV" firstAttribute="leading" secondItem="oMq-E0-lAI" secondAttribute="leadingMargin" constant="8" id="KzS-aI-63M"/>
+                            <constraint firstItem="dcj-8T-qHV" firstAttribute="top" secondItem="A4a-gS-7X9" secondAttribute="bottom" constant="8" id="NPf-Kz-PIS"/>
+                            <constraint firstItem="A4a-gS-7X9" firstAttribute="trailing" secondItem="dcj-8T-qHV" secondAttribute="trailing" id="S05-AP-LgE"/>
+                            <constraint firstItem="f4B-eG-Et0" firstAttribute="top" secondItem="za1-5R-hTA" secondAttribute="bottom" constant="7.5" id="WfA-z0-ary"/>
+                            <constraint firstItem="A4a-gS-7X9" firstAttribute="leading" secondItem="f4B-eG-Et0" secondAttribute="trailing" constant="8" id="cgd-ZL-bDv"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dcj-8T-qHV" secondAttribute="trailing" constant="8" id="fLX-6A-3ia"/>
+                            <constraint firstItem="f4B-eG-Et0" firstAttribute="height" secondItem="A4a-gS-7X9" secondAttribute="height" id="p5A-cB-gsN"/>
+                            <constraint firstItem="dcj-8T-qHV" firstAttribute="centerY" secondItem="oMq-E0-lAI" secondAttribute="centerY" multiplier="0.6" id="pDD-GR-XCS"/>
+                            <constraint firstItem="f4B-eG-Et0" firstAttribute="leading" secondItem="JMg-jk-ErC" secondAttribute="leading" constant="30" id="zCu-Rf-MWf"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="JMg-jk-ErC"/>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="textField" destination="f4B-eG-Et0" id="NYy-8o-5Ai"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zWa-k0-qw4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1594.4000000000001" y="209.14542728635683"/>
         </scene>
     </scenes>
     <resources>

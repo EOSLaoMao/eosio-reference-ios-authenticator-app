@@ -63,6 +63,7 @@
 		6B9B0426219B6913007CAA51 /* SelectiveDisclosureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9B0425219B6913007CAA51 /* SelectiveDisclosureViewController.swift */; };
 		6BBC713221B6E52D007B0063 /* ResourceHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BBC713121B6E52D007B0063 /* ResourceHash.swift */; };
 		6D27F11B22A13CE500ACFAD9 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A2D70FA213F2A6800DB27C7 /* CloudKit.framework */; };
+		6DC1F6AF22BBAC53004C4D0C /* ValidationEndpointSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC1F6AE22BBAC53004C4D0C /* ValidationEndpointSettingsViewController.swift */; };
 		70407E4521AC5AE00045ED6E /* AuthorizersListDeviceHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70407E4421AC5AE00045ED6E /* AuthorizersListDeviceHeader.swift */; };
 		705F54792178B98200E79FF2 /* SuccessCheckmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705F54772178B98200E79FF2 /* SuccessCheckmarkViewController.swift */; };
 		705F547A2178B98200E79FF2 /* SuccessCheckmarkViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 705F54782178B98200E79FF2 /* SuccessCheckmarkViewController.xib */; };
@@ -221,6 +222,7 @@
 		6B9B0425219B6913007CAA51 /* SelectiveDisclosureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectiveDisclosureViewController.swift; sourceTree = "<group>"; };
 		6BBC713121B6E52D007B0063 /* ResourceHash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceHash.swift; sourceTree = "<group>"; };
 		6BD5841F214FF45A0050FDC6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6DC1F6AE22BBAC53004C4D0C /* ValidationEndpointSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationEndpointSettingsViewController.swift; sourceTree = "<group>"; };
 		70407E4421AC5AE00045ED6E /* AuthorizersListDeviceHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizersListDeviceHeader.swift; sourceTree = "<group>"; };
 		705F54772178B98200E79FF2 /* SuccessCheckmarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessCheckmarkViewController.swift; sourceTree = "<group>"; };
 		705F54782178B98200E79FF2 /* SuccessCheckmarkViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SuccessCheckmarkViewController.xib; sourceTree = "<group>"; };
@@ -510,6 +512,7 @@
 				B4522A97217E8CC200DA60D1 /* NoBiometricsViewController.swift */,
 				B4522A99217EBDF400DA60D1 /* BiometricEnrollmentViewController.swift */,
 				1F30E6BB221379CD00C888B8 /* SettingsViewController.swift */,
+				6DC1F6AE22BBAC53004C4D0C /* ValidationEndpointSettingsViewController.swift */,
 				1F30E6BD22137D1D00C888B8 /* SettingsItemTableViewCell.swift */,
 				1F30E6BF22137EB200C888B8 /* DeveloperSettingsViewController.swift */,
 				1FBB59D12213BF730042886B /* DomainTableViewCell.swift */,
@@ -1034,6 +1037,7 @@
 				B4B51E57216FDC10009EDA63 /* DataManager.swift in Sources */,
 				6B9B0426219B6913007CAA51 /* SelectiveDisclosureViewController.swift in Sources */,
 				8F6D50892211BD9100924F7D /* CirclesActivityIndicatorView.swift in Sources */,
+				6DC1F6AF22BBAC53004C4D0C /* ValidationEndpointSettingsViewController.swift in Sources */,
 				1F30E6C022137EB200C888B8 /* DeveloperSettingsViewController.swift in Sources */,
 				8A919529215F09EC008F83E5 /* FontManager.swift in Sources */,
 				8A9D1E48212778DE00440777 /* UIExtensions.swift in Sources */,
