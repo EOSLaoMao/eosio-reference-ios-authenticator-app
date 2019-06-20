@@ -14,11 +14,12 @@ import EosioSwiftVaultSignatureProvider
 
 
 extension AuthenticatorRequestViewController {
-
+    
+    
     func handleTransactionSignatureRequest(payload: EosioReferenceAuthenticatorSignatureProvider.RequestPayload,
                                            manifest: AppManifest,
                                            completion: @escaping (EosioTransactionSignatureResponse?) -> Void) {
-
+        
         // Get the transactionSignature request, otherwise return nil
         guard let transactionSignatureRequest = payload.request.transactionSignature else { return completion(nil) }
         
@@ -32,7 +33,7 @@ extension AuthenticatorRequestViewController {
         if ProcessInfo.processInfo.environment["SKIP_ASSERT_REQUIRE"] != nil { shouldAddAssert = false }
         
         // If there are security exclusions, update some security flags
-        if let secuityExclusions = self.getActiveSecurityExclusions() {
+        if let secuityExclusions = getActiveSecurityExclusions() {
             if shouldAddAssert && secuityExclusions.addAssertToTransactions {
                 shouldAddAssert = false
             }
@@ -104,6 +105,8 @@ extension AuthenticatorRequestViewController {
                 self.handleConfirmationResponse(transaction: transaction, request: transactionSignatureRequest, didAccept: didAccept, completion: completion)
             })
         })
+        
+        
     }
     
     
