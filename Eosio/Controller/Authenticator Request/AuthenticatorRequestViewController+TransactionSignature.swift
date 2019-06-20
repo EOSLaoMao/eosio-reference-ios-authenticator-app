@@ -14,36 +14,7 @@ import EosioSwiftVaultSignatureProvider
 
 
 extension AuthenticatorRequestViewController {
-   
-    func validateTransactionABI(
-        request: EosioReferenceAuthenticatorSignatureProvider.TransactionSignatureRequest,
-        completion: @escaping (Bool) -> Void
-        ) {
-        let endpoint = ValidationEndpointSettingsViewController.validationDomain
-        let url = URL(string: endpoint)!
-        let provider = EosioRpcProvider(endpoint: url)
-        
-        var success = true
-        let validationGroup = DispatchGroup()
-        for abi in request.abis {
-            validationGroup.enter()
-            provider.getRawCodeAndAbi(accountName: abi.accountName) { result in
-                switch result {
-                case .failure(_):
-                    success = false
-                case .success(let response):
-                    if response.abi != abi.abi {
-                        success = false
-                    }
-                }
-                validationGroup.leave()
-            }
-        }
-        validationGroup.wait()
-        
-        completion(success)
-    }
-    
+
     func handleTransactionSignatureRequest(payload: EosioReferenceAuthenticatorSignatureProvider.RequestPayload,
                                            manifest: AppManifest,
                                            completion: @escaping (EosioTransactionSignatureResponse?) -> Void) {
@@ -51,94 +22,88 @@ extension AuthenticatorRequestViewController {
         // Get the transactionSignature request, otherwise return nil
         guard let transactionSignatureRequest = payload.request.transactionSignature else { return completion(nil) }
         
-        validateTransactionABI(request: transactionSignatureRequest) { success in
-            if !success {
-                return completion(EosioTransactionSignatureResponse(error: EosioError(.getRawAbiError, reason: "ABI verification error")))
-            } else {
-                // Some security flags
-                var shouldAddAssert = true
-                var strictParsingCTT = true
-                var shouldEnforceActionsWhitelist = true
-                
-                //TODO: is this still needed now that security exclusions are in place???
-                // Env var for skiping add assert require
-                if ProcessInfo.processInfo.environment["SKIP_ASSERT_REQUIRE"] != nil { shouldAddAssert = false }
-                
-                // If there are security exclusions, update some security flags
-                if let secuityExclusions = self.getActiveSecurityExclusions() {
-                    if shouldAddAssert && secuityExclusions.addAssertToTransactions {
-                        shouldAddAssert = false
-                    }
-                    strictParsingCTT = !secuityExclusions.relaxedContractParsing
-                    shouldEnforceActionsWhitelist = !secuityExclusions.whitelistedActions
-                }
-                
-                let transaction: EosioTransaction
-                do {
-                    // try and deserialize the serialized transaction
-                    let serializedTransaction = try Data(hex: transactionSignatureRequest.transaction.packedTrx)
-                    transaction = try EosioTransaction.deserialize(serializedTransaction, serializationProvider: EosioAbieosSerializationProvider())
-                    transaction.chainId = transactionSignatureRequest.chainId
-                    // enforce whitelist
-                    if shouldEnforceActionsWhitelist {
-                        if let nonWhitelistedActions = transaction.nonWhitelistedActionsList(manifest: manifest) {
-                            let reason = nonWhitelistedActions + " are not whitelisted in the app manifest"
-                            return completion(EosioTransactionSignatureResponse(error: EosioError(.signatureProviderError, reason: reason)))
-                        }
-                    }
-                    // add abis
-                    for abi in transactionSignatureRequest.abis {
-                        try transaction.abis.addAbi(name: EosioName(abi.accountName), hex: abi.abi)
-                    }
-                    // add assert require
-                    if shouldAddAssert {
-                        try transaction.addAssertRequireAction(appManifest: manifest)
-                    }
-                    // render ricardians
-                    try transaction.deserializeActionData(exclude: [EosioName("eosio.assert")])
-                    do {
-                        try transaction.renderRicardians(strictParsingCTT: strictParsingCTT)
-                    } catch (let error) {
-                        completion(EosioTransactionSignatureResponse(error: error.eosioError))
-                    }
-                    
-                } catch {
-                    return completion(EosioTransactionSignatureResponse(error: error.eosioError))
-                }
-                
-                
-                ResourceIntegrity.getActionIconUrls(transaction: transaction, progress: { (dataFetcher, dataFetcherState) in
-                    
-                    // Check for network connection and display any errors.
-                    let fetcher = dataFetcher
-                    let networkOfflineVC = UIStoryboard(name: "ErrorScreens", bundle: nil).instantiateViewController(withIdentifier: "NetworkOfflineViewController") as! NetworkOfflineViewController
-                    switch dataFetcherState {
-                    case DataFetcherState.WaitingForNetwork:
-                        networkOfflineVC.networkOnline = { self.navigationController?.popViewController(animated: true) }
-                        networkOfflineVC.userCancelled = { self.navigationController?.popViewController(animated: true, completion: { fetcher.cancelCurrentTask() }) }
-                        self.navigationController?.pushViewController(networkOfflineVC, animated: true)
-                        
-                    case DataFetcherState.NotConnectedToInternet:
-                        networkOfflineVC.networkOnline = { self.navigationController?.popViewController(animated: true, completion: { fetcher.retryCurrentTask() }) }
-                        networkOfflineVC.userCancelled = { self.navigationController?.popViewController(animated: true, completion: { fetcher.cancelCurrentTask() }) }
-                        self.navigationController?.pushViewController(networkOfflineVC, animated: true)
-                    default: break
-                    }
-                    
-                    // upon success
-                }, completion: { (arrayOfUrlStrings, possibleError) in
-                    
-                    guard possibleError == nil else {
-                        return completion(EosioTransactionSignatureResponse(error: EosioError(.signatureProviderError, reason: possibleError?.reason ?? "")))
-                    }
-                    
-                    self.presentConfirmation(transaction: transaction, appManifest: manifest, reply: { (didAccept) in
-                        self.handleConfirmationResponse(transaction: transaction, request: transactionSignatureRequest, didAccept: didAccept, completion: completion)
-                    })
-                })
+        // Some security flags
+        var shouldAddAssert = true
+        var strictParsingCTT = true
+        var shouldEnforceActionsWhitelist = true
+        
+        //TODO: is this still needed now that security exclusions are in place???
+        // Env var for skiping add assert require
+        if ProcessInfo.processInfo.environment["SKIP_ASSERT_REQUIRE"] != nil { shouldAddAssert = false }
+        
+        // If there are security exclusions, update some security flags
+        if let secuityExclusions = self.getActiveSecurityExclusions() {
+            if shouldAddAssert && secuityExclusions.addAssertToTransactions {
+                shouldAddAssert = false
             }
+            strictParsingCTT = !secuityExclusions.relaxedContractParsing
+            shouldEnforceActionsWhitelist = !secuityExclusions.whitelistedActions
         }
         
+        let transaction: EosioTransaction
+        do {
+            // try and deserialize the serialized transaction
+            let serializedTransaction = try Data(hex: transactionSignatureRequest.transaction.packedTrx)
+            transaction = try EosioTransaction.deserialize(serializedTransaction, serializationProvider: EosioAbieosSerializationProvider())
+            transaction.chainId = transactionSignatureRequest.chainId
+            // enforce whitelist
+            if shouldEnforceActionsWhitelist {
+                if let nonWhitelistedActions = transaction.nonWhitelistedActionsList(manifest: manifest) {
+                    let reason = nonWhitelistedActions + " are not whitelisted in the app manifest"
+                    return completion(EosioTransactionSignatureResponse(error: EosioError(.signatureProviderError, reason: reason)))
+                }
+            }
+            // add abis
+            for abi in transactionSignatureRequest.abis {
+                try validateTransactionABI(abi.abi, accountName: abi.accountName)
+                try transaction.abis.addAbi(name: EosioName(abi.accountName), hex: abi.abi)
+            }
+            // add assert require
+            if shouldAddAssert {
+                try transaction.addAssertRequireAction(appManifest: manifest)
+            }
+            // render ricardians
+            try transaction.deserializeActionData(exclude: [EosioName("eosio.assert")])
+            do {
+                try transaction.renderRicardians(strictParsingCTT: strictParsingCTT)
+            } catch (let error) {
+                completion(EosioTransactionSignatureResponse(error: error.eosioError))
+            }
+            
+        } catch {
+            return completion(EosioTransactionSignatureResponse(error: error.eosioError))
+        }
+        
+        
+        ResourceIntegrity.getActionIconUrls(transaction: transaction, progress: { (dataFetcher, dataFetcherState) in
+            
+            // Check for network connection and display any errors.
+            let fetcher = dataFetcher
+            let networkOfflineVC = UIStoryboard(name: "ErrorScreens", bundle: nil).instantiateViewController(withIdentifier: "NetworkOfflineViewController") as! NetworkOfflineViewController
+            switch dataFetcherState {
+            case DataFetcherState.WaitingForNetwork:
+                networkOfflineVC.networkOnline = { self.navigationController?.popViewController(animated: true) }
+                networkOfflineVC.userCancelled = { self.navigationController?.popViewController(animated: true, completion: { fetcher.cancelCurrentTask() }) }
+                self.navigationController?.pushViewController(networkOfflineVC, animated: true)
+                
+            case DataFetcherState.NotConnectedToInternet:
+                networkOfflineVC.networkOnline = { self.navigationController?.popViewController(animated: true, completion: { fetcher.retryCurrentTask() }) }
+                networkOfflineVC.userCancelled = { self.navigationController?.popViewController(animated: true, completion: { fetcher.cancelCurrentTask() }) }
+                self.navigationController?.pushViewController(networkOfflineVC, animated: true)
+            default: break
+            }
+            
+            // upon success
+        }, completion: { (arrayOfUrlStrings, possibleError) in
+            
+            guard possibleError == nil else {
+                return completion(EosioTransactionSignatureResponse(error: EosioError(.signatureProviderError, reason: possibleError?.reason ?? "")))
+            }
+            
+            self.presentConfirmation(transaction: transaction, appManifest: manifest, reply: { (didAccept) in
+                self.handleConfirmationResponse(transaction: transaction, request: transactionSignatureRequest, didAccept: didAccept, completion: completion)
+            })
+        })
     }
     
     
@@ -189,8 +154,31 @@ extension AuthenticatorRequestViewController {
 
     }
     
-    
-
+    private func validateTransactionABI(_ abi: String, accountName: String) throws {
+        let endpoint = ValidationEndpointSettingsViewController.validationDomain
+        let url = URL(string: endpoint)!
+        let provider = EosioRpcProvider(endpoint: url)
+        
+        let semaphore = DispatchSemaphore(value: 0)
+        
+        var error: Error?
+        provider.getRawCodeAndAbi(accountName: accountName) { result in
+            switch result {
+            case .failure(let err):
+                error = err
+            case .success(let response):
+                if response.abi != abi {
+                    error = EosioError(.getRawAbiError, reason: "ABI verification error")
+                }
+            }
+            semaphore.signal()
+        }
+        semaphore.wait()
+        
+        if let error = error {
+            throw error
+        }
+    }
     
     
 }
