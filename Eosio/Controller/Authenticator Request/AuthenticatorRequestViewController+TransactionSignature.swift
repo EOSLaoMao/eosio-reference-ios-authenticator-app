@@ -170,8 +170,10 @@ extension AuthenticatorRequestViewController {
             case .failure(let err):
                 error = err
             case .success(let response):
-                if response.abi != abi {
-                    error = EosioError(.getRawAbiError, reason: "ABI verification error")
+                let decodedOnchainAbi = Data(base64Encoded: response.abi)!
+                let decodedRequestAbi = Data(hexString: abi)!
+                if decodedOnchainAbi != decodedRequestAbi {
+                    error = EosioError(.getRawAbiError, reason: "Onchain ABI verification error")
                 }
             }
             semaphore.signal()
