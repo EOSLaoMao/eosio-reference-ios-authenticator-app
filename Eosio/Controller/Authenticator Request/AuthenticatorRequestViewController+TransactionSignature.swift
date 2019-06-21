@@ -172,7 +172,7 @@ extension AuthenticatorRequestViewController {
             case .success(let response):
                 let decodedOnchainAbi = Data(base64Encoded: response.abi)!
                 let decodedRequestAbi = Data(hexString: abi)!
-                if decodedOnchainAbi != decodedRequestAbi {
+                if decodedOnchainAbi.sha256 != decodedRequestAbi.sha256 {
                     error = EosioError(.getRawAbiError, reason: "Onchain ABI verification error")
                 }
             }
