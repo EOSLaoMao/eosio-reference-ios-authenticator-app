@@ -57,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "authorizersListVC") as! AuthorizersListViewController
         
         if AuthenticatorRequestViewController.isAuthenticatorRequest(url: url) {
-            let transactionSignatureRequestViewController = AuthenticatorRequestViewController(url: url, options: options)
+            let transactionSignatureRequestViewController = AuthenticatorRequestViewController(url: url, options: [UIApplication.OpenURLOptionsKey.sourceApplication: "com.apple.mobilesafari"])
             if (self.navigationController?.viewControllerBefore(className: String(describing: type(of: transactionSignatureRequestViewController)))) != nil {
                 self.navigationController?.setViewControllers([vc, transactionSignatureRequestViewController], animated: false)
             } else {
