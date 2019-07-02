@@ -94,8 +94,6 @@ class ResourceIntegrity : NSObject {
     static func getActionIconUrls(transaction: EosioTransaction,
                                   progress: ((DataFetcher, DataFetcherState) -> Void)? = nil,
                                   completion: @escaping ([String], AppError?) -> Void) {
-        
-        completion([String](),nil)
 
         let waitGroup = DispatchGroup()
         
@@ -112,10 +110,6 @@ class ResourceIntegrity : NSObject {
                 continue
             }
             
-            if returnError != nil {
-                completion(retVal, returnError!)
-            }
-            
             if let metaData = actionData.ricardian?.metadata,
                 metaData.icon.count > 0 {
                 
@@ -128,9 +122,9 @@ class ResourceIntegrity : NSObject {
                     completion: { data, error in
                         
                         if let theError = error {
-                            completion(retVal, theError)
+                            returnError = theError
                         } else {
-                           retVal.append(iconUrlPath)
+                            retVal.append(iconUrlPath)
                         }
                         
                         waitGroup.leave()
@@ -139,7 +133,7 @@ class ResourceIntegrity : NSObject {
                     )
 
             } else {
-               returnError = AppError(AppErrorCode.resourceIntegrityError, reason:"Action missing icon or invalid icon format")
+                returnError = AppError(AppErrorCode.resourceIntegrityError, reason:"Action missing icon or invalid icon format")
             }
         }
 
@@ -147,10 +141,8 @@ class ResourceIntegrity : NSObject {
         waitGroup.notify(queue: DispatchQueue.main) {
             if actions.count - assertActionCount != retVal.count {
                 returnError = AppError(AppErrorCode.resourceIntegrityError, reason:"Actions missing one or more icon")
-            } else {
-                completion(retVal, returnError)
             }
-
+            completion(retVal, returnError)
         }
     }
 }
