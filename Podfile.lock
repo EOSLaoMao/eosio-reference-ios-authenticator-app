@@ -35,7 +35,7 @@ PODS:
   - SnapshotTesting (1.5.0)
 
 DEPENDENCIES:
-  - EosioSwift (from `https://github.com/EOSLaoMao/eosio-swift.git`, branch `bugfix/base16-decode`)
+  - EosioSwift (from `https://github.com/EOSLaoMao/eosio-swift.git`, branch `master`)
   - EosioSwiftAbieosSerializationProvider (~> 0.1.1)
   - EosioSwiftEcc (~> 0.1.1)
   - EosioSwiftReferenceAuthenticatorSignatureProvider (~> 0.1.1)
@@ -61,7 +61,7 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   EosioSwift:
-    :branch: bugfix/base16-decode
+    :branch: master
     :git: https://github.com/EOSLaoMao/eosio-swift.git
 
 CHECKOUT OPTIONS:
@@ -84,6 +84,6 @@ SPEC CHECKSUMS:
   SipHash: fad90a4683e420c52ef28063063dbbce248ea6d4
   SnapshotTesting: 9ca1d80f6322509a035856170c11d0571b1f7171
 
-PODFILE CHECKSUM: 5feb0ed640e85895a9ff3ee89842e86d045721c2
+PODFILE CHECKSUM: fbbe0a728c3ffd9c4516b8ebb97a6ead1ca970bb
 
 COCOAPODS: 1.6.1
