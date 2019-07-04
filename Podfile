@@ -16,7 +16,7 @@ def set_up_local_pods
 end
 
 def set_up_remote_pods
-    pod 'EosioSwift', '~> 0.1.1'
+    pod 'EosioSwift', :git => 'https://github.com/EOSLaoMao/eosio-swift.git', :branch => 'bugfix/base16-decode'
     pod 'EosioSwiftAbieosSerializationProvider', '~> 0.1.1'
     pod 'EosioSwiftVault', '~> 0.1.1'
     pod 'EosioSwiftEcc', '~> 0.1.1'
