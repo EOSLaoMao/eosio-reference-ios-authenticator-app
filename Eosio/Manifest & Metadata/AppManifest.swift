@@ -33,8 +33,11 @@ public struct AppManifest: Codable {
     
     
     public func isWhitelisted(contract: String, action: String) -> Bool {
+        let skipChar = ["", "0"]
         for item in whitelist {
-            if (item.contract == contract || item.contract == "0") && (item.action == action || item.action == "0") {
+            let actionCompare = item.action == action || skipChar.contains(item.action)
+            let contractCompare = item.contract == contract || skipChar.contains(item.contract)
+            if (actionCompare && contractCompare) {
                 return true
             }
         }
