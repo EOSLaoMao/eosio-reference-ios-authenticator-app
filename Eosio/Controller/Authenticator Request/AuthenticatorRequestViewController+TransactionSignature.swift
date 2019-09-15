@@ -112,7 +112,7 @@ extension AuthenticatorRequestViewController {
     
     private func presentConfirmation(transaction: EosioTransaction, appManifest: AppManifest, reply: @escaping (Bool)->Void) {
         let confirmationController = UIStoryboard(name: "Confirmation", bundle: nil).instantiateViewController(withIdentifier: "ConfirmationViewController") as! ConfirmationViewController
-        var appManifest = appManifest
+        let appManifest = appManifest
         confirmationController.unpackedtrx = transaction
         confirmationController.reply = reply
         confirmationController.chainID = transaction.chainId

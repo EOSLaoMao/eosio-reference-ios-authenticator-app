@@ -9,6 +9,7 @@
 import UIKit
 import EosioSwift
 import EosioSwiftVault
+import LocalAuthentication
 
 class AuthorizersListViewController: UIViewController {
 
@@ -73,6 +74,9 @@ class AuthorizersListViewController: UIViewController {
     }
 
     private func updateDataSourceWithCurrentKeys() {
+        let ctx = LAContext()
+        guard ctx.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil) else { return }
+        
         let device = Device.current
         keychainKeys = device.keys
         guard let validKeysArray = try? vault.getAllVaultKeys() else { return }

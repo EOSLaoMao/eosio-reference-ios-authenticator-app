@@ -41,8 +41,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        print(url)
-        
         // This has to be handled specially because the ImportKeyTableViewController is presented modally but with its
         // own UINavigationController in order to have a UINavigationBar on it, but it can also have another modal
         // overlayed on it after successfully adding a new key.  This makes it more difficult to determine what to do
