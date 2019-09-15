@@ -20,7 +20,6 @@ class AuthenticatorRequestViewController: UIViewController {
     
     let session = URLSession(configuration: .default)
     private let url: URL
-    private let sourceApp: String?
     private let ricardianViewController = ConfirmationViewController()
     private var requestPayload: EosioReferenceAuthenticatorSignatureProvider.RequestPayload?
 
@@ -60,7 +59,6 @@ class AuthenticatorRequestViewController: UIViewController {
     
     init(url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) {
         self.url = url
-        self.sourceApp = options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -74,12 +72,6 @@ class AuthenticatorRequestViewController: UIViewController {
         
         //Add the activity indicator
         self.view.addSubview(activityIndicator)
-       
-        
-        guard self.sourceApp != nil else {
-            self.showMalformedRequestError(error: AppError(AppErrorCode.malformedRequestError, reason: "Unable to identify requesting app"))
-            return
-        }
         
         parseRequestPayload()
         
@@ -173,7 +165,7 @@ class AuthenticatorRequestViewController: UIViewController {
     
     func handleRequest(progress: ((DataFetcher, DataFetcherState) -> Void)? = nil) {
         
-        guard let requestPayload = requestPayload, let sourceApp = sourceApp else {
+        guard let requestPayload = requestPayload  else {
             return
         }
         let appManifestProvider = AppManifestProvider()
@@ -212,7 +204,7 @@ class AuthenticatorRequestViewController: UIViewController {
             
             // validate the source app identifier is declared in the metadata for native apps
             // and the returnUrl domain matches the manifest domain for web apps and universal links
-            if let validationError = strongSelf.validateSourceAppAndReturnUrl(sourceApp: sourceApp, returnUrlString: requestPayload.returnUrl, manifest: manifest) {
+            if let validationError = strongSelf.validateReturnUrl(returnUrlString: requestPayload.returnUrl, manifest: manifest) {
                 return strongSelf.showMalformedRequestError(error: validationError)
             }
             
@@ -236,7 +228,7 @@ class AuthenticatorRequestViewController: UIViewController {
     }
 
     
-    func validateSourceAppAndReturnUrl(sourceApp: String, returnUrlString: String, manifest: AppManifest) -> AppError? {
+    func validateReturnUrl(returnUrlString: String, manifest: AppManifest) -> AppError? {
 
         guard let returnUrl = URL(string: returnUrlString) else {
             return AppError(.domainError, reason: "Invalid return url \(returnUrlString)", isReturnable: false)
@@ -277,17 +269,6 @@ class AuthenticatorRequestViewController: UIViewController {
             }
         }
         
-        // if sourceApp is not mobile safari, validate the app identifier
-        if sourceApp != "com.apple.mobilesafari" {
-            guard let appIdentifiers = manifest.metadata.appIdentifiers else {
-                return AppError(AppErrorCode.metadataError, reason: "No app identifiers declared in the app metadata.", isReturnable: false)
-            }
-            guard appIdentifiers.contains(sourceApp) else {
-                return AppError(AppErrorCode.metadataError, reason: "App bundle id \(sourceApp) does not match any identifiers declared in the app metadata. \(appIdentifiers)", isReturnable: false)
-            }
-            // possibly validate the returnUrl scheme for a native app matches schemes declared in the app metadata
-        }
-        
         // if no errors found return nil
         return nil
     }
@@ -297,40 +278,24 @@ class AuthenticatorRequestViewController: UIViewController {
                   responsePayload: EosioReferenceAuthenticatorSignatureProvider.ResponsePayload) {
     
     	// validate callback domain == manifest domain here? (or has this already been done)
-    	if let callbackUrl = requestPayload.callbackUrl {
+    	if let _ = requestPayload.callbackUrl {
         	print("CALL BACK URL FOUND")
         	print("RETURN URL = \(requestPayload.returnUrl)")
         
         	guard let payloadHex = responsePayload.toHex else { return }
         	var returnUrl = requestPayload.returnUrl
-        	if sourceApp == "com.google.chrome.ios" {
-            	returnUrl = "googlechrome://"
-        	} else {
-            	returnUrl = (returnUrl.components(separatedBy: "#").first ?? "")
-            	returnUrl = returnUrl + "#" + payloadHex
-            	guard let url = URL(string: returnUrl) else { return }
-            	DispatchQueue.main.async {
-                	UIApplication.shared.open(url, options: [:].convertToUIApplicationOpenExternalURLOptionsKeyDictionary(), completionHandler: nil)
-                    if let vcBeforeAuth = self.navigationController?.viewControllerBefore(className: String(describing: type(of: self))) {
-                        self.navigationController?.popToViewController(vcBeforeAuth, animated: false)
-                    } else {
-                        self.navigationController?.popToRootViewController(animated: false)
-                    }
-            	}
-            	return
-        	}
-        
-        	callback(callbackUrl: callbackUrl, responsePayload: responsePayload) { (didSucceed) in
-            	guard let url = URL(string: returnUrl) else { return }
-            	DispatchQueue.main.async {
-                	UIApplication.shared.open(url, options: [:].convertToUIApplicationOpenExternalURLOptionsKeyDictionary(), completionHandler: nil)
-                    if let vcBeforeAuth = self.navigationController?.viewControllerBefore(className: String(describing: type(of: self))) {
-                        self.navigationController?.popToViewController(vcBeforeAuth, animated: false)
-                    } else {
-                        self.navigationController?.popToRootViewController(animated: false)
-                    }
-            	}
-        	}
+            
+            returnUrl = (returnUrl.components(separatedBy: "#").first ?? "")
+            returnUrl = returnUrl + "#" + payloadHex
+            guard let url = URL(string: returnUrl) else { return }
+            DispatchQueue.main.async {
+                UIApplication.shared.open(url, options: [:].convertToUIApplicationOpenExternalURLOptionsKeyDictionary(), completionHandler: nil)
+                if let vcBeforeAuth = self.navigationController?.viewControllerBefore(className: String(describing: type(of: self))) {
+                    self.navigationController?.popToViewController(vcBeforeAuth, animated: false)
+                } else {
+                    self.navigationController?.popToRootViewController(animated: false)
+                }
+            }
         
     	} else {
         	print("SEND REPONSE IN RETURN URL")
