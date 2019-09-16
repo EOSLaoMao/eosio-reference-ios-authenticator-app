@@ -65,9 +65,11 @@ class AuthorizersListViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-       
+        NotificationCenter.default.addObserver(forName: ImportKeyTableViewController.importKeySucceedNotification, object: nil, queue: OperationQueue.main) { [weak self] _ in
+            self?.updateDataSourceWithCurrentKeys()
+            self?.tableView.reloadData()
+        }
     }
-    
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -101,7 +103,7 @@ class AuthorizersListViewController: UIViewController {
             guard key.isEnabled == true else { return }
             authenticatorVC.key = key
             authenticatorVC.keyDeletePressed = { [weak self] publicKey in
-                self?.deleteKey(publicKey: publicKey, seconds: 10)
+                self?.deleteKey(publicKey: publicKey, seconds: 3)
             }
         default: break // do nothing
         }

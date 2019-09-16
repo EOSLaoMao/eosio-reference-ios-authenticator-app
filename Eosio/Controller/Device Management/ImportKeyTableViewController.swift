@@ -25,6 +25,8 @@ class ImportKeyTableViewController: UITableViewController {
     @IBOutlet weak var helperTextLabel: UILabel!
 
 
+    static let importKeySucceedNotification = NSNotification.Name("importKeySucceedNotification")
+    
     private let vault = EosioVault(accessGroup: Constants.vaultAccessGroup)
     public var completion: ((_ didImport: Bool) -> ())?
     
@@ -110,6 +112,7 @@ class ImportKeyTableViewController: UITableViewController {
             self.keyNameField.resignFirstResponder()
             self.privateKeyField.resignFirstResponder()
             self.present(successViewController, animated: false, completion: nil)
+            NotificationCenter.default.post(name: ImportKeyTableViewController.importKeySucceedNotification, object: nil)
             successViewController.dismissButtonPressed = { [weak self] in
                 guard let strongSelf = self else { return }
                 DispatchQueue.main.async {
