@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina5_9" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -60,6 +59,16 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B7P-mR-UIg">
+                                <rect key="frame" x="172.66666666666666" y="675" width="30" height="27"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="Skip">
+                                    <color key="titleColor" red="0.40054237840000001" green="0.4820854664" blue="0.61177909370000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="skipBiometric:" destination="B4H-et-Geo" eventType="touchUpInside" id="fI1-Pg-KhS"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -67,7 +76,9 @@
                             <constraint firstItem="WpB-wG-kob" firstAttribute="bottom" secondItem="atB-zY-2Tk" secondAttribute="bottom" constant="10" id="7vb-8x-R9h"/>
                             <constraint firstItem="K1q-1w-mB9" firstAttribute="leading" secondItem="WpB-wG-kob" secondAttribute="leading" constant="36" id="E92-Pq-eoA"/>
                             <constraint firstItem="OiF-1p-TnS" firstAttribute="leading" secondItem="WpB-wG-kob" secondAttribute="leading" constant="8" id="Q8H-pQ-oto"/>
+                            <constraint firstItem="B7P-mR-UIg" firstAttribute="centerX" secondItem="Bta-qC-lOk" secondAttribute="centerX" id="RoN-HA-PYA"/>
                             <constraint firstItem="WpB-wG-kob" firstAttribute="trailing" secondItem="OiF-1p-TnS" secondAttribute="trailing" constant="8" id="Sq7-N9-ttb"/>
+                            <constraint firstItem="atB-zY-2Tk" firstAttribute="top" secondItem="B7P-mR-UIg" secondAttribute="bottom" constant="16" id="nsr-No-8JN"/>
                             <constraint firstItem="atB-zY-2Tk" firstAttribute="leading" secondItem="WpB-wG-kob" secondAttribute="leading" constant="24" id="sYL-HH-vCJ">
                                 <variation key="heightClass=compact" constant="60"/>
                             </constraint>

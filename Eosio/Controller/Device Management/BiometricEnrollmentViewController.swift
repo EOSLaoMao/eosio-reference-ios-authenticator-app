@@ -33,6 +33,10 @@ class BiometricEnrollmentViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = false
     }
     
+    @IBAction func skipBiometric(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+    }
+    
     @IBAction func biometricSetupPressed(_ sender: Any) {
         let defaultSettingsString = UIApplication.openSettingsURLString
         

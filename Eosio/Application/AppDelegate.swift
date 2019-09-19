@@ -109,7 +109,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let enrollBioVc = UIStoryboard(name: "Biometrics", bundle: nil).instantiateViewController(withIdentifier: "BioEnrollmentController") as! BiometricEnrollmentViewController
                 enrollBioVc.error = err
                 enrollBioVc.biometricType = laContext.biometryType
-                self.navigationController?.setViewControllers([enrollBioVc], animated: true)
+                if let vc = self.navigationController?.viewControllers.first {
+                    self.navigationController?.setViewControllers([vc, enrollBioVc], animated: true)
+                }
                
             } else {
                 fatalError("LAcontext.canEvaluatePolicy returned unknown error, don't know how to proceed.")
