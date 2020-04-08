@@ -36,7 +36,7 @@ extension UINavigationController {
         // Find the first viewcontroller of the type we specify in the argument and return the viewcontroller
         // that is before it on the stack so that we can popToViewController to return to where we were before
         // starting a specific request.
-        if let foundIndex = self.viewControllers.index(where: { String(describing: type(of: $0)) == className }) {
+        if let foundIndex = self.viewControllers.firstIndex(where: { String(describing: type(of: $0)) == className }) {
             let before = foundIndex > 0 ? foundIndex - 1 : foundIndex
             return self.viewControllers[before]
         } else {

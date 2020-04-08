@@ -708,7 +708,7 @@
 				TargetAttributes = {
 					8A73A3A520E6A4A10088D391 = {
 						CreatedOnToolsVersion = 9.4.1;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1140;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -717,12 +717,12 @@
 					};
 					8A73A3B920E6A4A20088D391 = {
 						CreatedOnToolsVersion = 9.4.1;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1140;
 						TestTargetID = 8A73A3A520E6A4A10088D391;
 					};
 					8A73A3C420E6A4A20088D391 = {
 						CreatedOnToolsVersion = 9.4.1;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1140;
 						TestTargetID = 8A73A3A520E6A4A10088D391;
 					};
 				};
@@ -1190,7 +1190,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ENABLE_BATCH_MODE = NO;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1229,7 +1229,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ENABLE_BATCH_MODE = NO;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1252,7 +1252,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = block.one.EosioTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EosioReferenceAuthenticator.app/EosioReferenceAuthenticator";
 			};
@@ -1275,7 +1275,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = block.one.EosioTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EosioReferenceAuthenticator.app/EosioReferenceAuthenticator";
 			};
@@ -1298,7 +1298,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = block.one.EosioUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = EosioReferenceAuthenticator;
 			};
@@ -1321,7 +1321,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = block.one.EosioUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = EosioReferenceAuthenticator;
 			};
