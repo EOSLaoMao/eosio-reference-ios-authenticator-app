@@ -33,7 +33,7 @@ extension String {
     
     var toJsonDictionary: [String:Any]? {
         guard let data = self.data(using: .utf8) else { return nil }
-        let dict = (try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as? [String:Any]) ?? nil
+        let dict = (((try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as? [String:Any]) as [String : Any]??)) ?? nil
         return dict
     }
     

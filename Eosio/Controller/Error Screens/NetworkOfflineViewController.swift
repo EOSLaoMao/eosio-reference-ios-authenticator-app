@@ -35,7 +35,8 @@ class NetworkOfflineViewController : UIViewController {
         
         self.navigationController?.navigationBar.isHidden = true
         
-        if let reach = Reachability(hostname: reachabilityHost) {
+        
+        if let reach = try? Reachability(hostname: reachabilityHost) {
             self.reachability = reach
             setupReachability()
         } else {
@@ -67,7 +68,7 @@ class NetworkOfflineViewController : UIViewController {
         retryingLabel.layer.add(anim, forKey: "flashOpacity")
         
         // Check if we came back online while getting here
-        if reachability?.connection != Reachability.Connection.none {
+        if reachability?.connection != Reachability.Connection.unavailable {
             networkOnline?()
             return
         }

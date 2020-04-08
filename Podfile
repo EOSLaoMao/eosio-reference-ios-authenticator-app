@@ -17,11 +17,11 @@ end
 
 def set_up_remote_pods
     pod 'EosioSwift', :git => 'https://github.com/EOSLaoMao/eosio-swift.git', :branch => 'master'
-    pod 'EosioSwiftAbieosSerializationProvider', '~> 0.1.3'
-    pod 'EosioSwiftVault', '~> 0.1.3'
-    pod 'EosioSwiftEcc', '~> 0.1.3'
-    pod 'EosioSwiftVaultSignatureProvider', '~> 0.1.3'
-    pod 'EosioSwiftReferenceAuthenticatorSignatureProvider', '~> 0.1.1'
+    pod 'EosioSwiftAbieosSerializationProvider', :git => 'https://github.com/EOSLaoMao/eosio-swift-abieos-serialization-provider.git', :branch => 'master'
+    pod 'EosioSwiftVault', :git => 'https://github.com/EOSIO/eosio-swift-vault.git', :branch => 'master'
+    pod 'EosioSwiftEcc', :git => 'https://github.com/EOSLaoMao/eosio-swift-ecc.git', :branch => 'master'
+    pod 'EosioSwiftVaultSignatureProvider', :git => 'https://github.com/EOSLaoMao/eosio-swift-vault-signature-provider.git', :branch => 'master'
+    pod 'EosioSwiftReferenceAuthenticatorSignatureProvider', :git => 'https://github.com/EOSLaoMao/eosio-swift-reference-ios-authenticator-signature-provider.git', :branch => 'master'
 end
 
 if using_local_pods
