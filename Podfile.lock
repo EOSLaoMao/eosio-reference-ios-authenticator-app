@@ -52,7 +52,6 @@ SPEC REPOS:
     - EosioSwiftVault
     - GRKOpenSSLFramework
     - PromiseKit
-  trunk:
     - ReachabilitySwift
     - SnapshotTesting
 
@@ -69,6 +68,6 @@ SPEC CHECKSUMS:
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   SnapshotTesting: 8caa6661fea7c8019d5b46de77c16bab99c36c5c
 
-PODFILE CHECKSUM: 68bdf2409d0506839ef563837e01cd919d7669c8
+PODFILE CHECKSUM: 019ee66df99b416e07b8fdec235427c8d91313cc
 
 COCOAPODS: 1.8.4
