@@ -3,6 +3,9 @@ using_local_pods = ENV['USE_LOCAL_PODS'] == 'true' || false
 platform :ios, '12.0'
 use_frameworks!
 
+source 'git@github.com:EOSLaoMao/laomao-pods.git'
+source 'https://github.com/CocoaPods/Specs.git'
+
 # ignore all warnings from all pods
 inhibit_all_warnings!
 
@@ -16,12 +19,12 @@ def set_up_local_pods
 end
 
 def set_up_remote_pods
-    pod 'EosioSwift', :git => 'https://github.com/EOSLaoMao/eosio-swift.git', :branch => 'master'
-    pod 'EosioSwiftAbieosSerializationProvider', :git => 'https://github.com/EOSLaoMao/eosio-swift-abieos-serialization-provider.git', :branch => 'master'
-    pod 'EosioSwiftVault', :git => 'https://github.com/EOSIO/eosio-swift-vault.git', :branch => 'master'
-    pod 'EosioSwiftEcc', :git => 'https://github.com/EOSLaoMao/eosio-swift-ecc.git', :branch => 'master'
-    pod 'EosioSwiftVaultSignatureProvider', :git => 'https://github.com/EOSLaoMao/eosio-swift-vault-signature-provider.git', :branch => 'master'
-    pod 'EosioSwiftReferenceAuthenticatorSignatureProvider', :git => 'https://github.com/EOSLaoMao/eosio-swift-reference-ios-authenticator-signature-provider.git', :branch => 'master'
+    pod 'EosioSwift'
+    pod 'EosioSwiftAbieosSerializationProvider'
+    pod 'EosioSwiftVault'
+    pod 'EosioSwiftEcc'
+    pod 'EosioSwiftVaultSignatureProvider'
+    pod 'EosioSwiftReferenceAuthenticatorSignatureProvider'
 end
 
 if using_local_pods
