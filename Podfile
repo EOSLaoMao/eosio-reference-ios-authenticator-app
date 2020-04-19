@@ -1,6 +1,6 @@
 using_local_pods = ENV['USE_LOCAL_PODS'] == 'true' || false
 
-platform :ios, '12.0'
+platform :ios, '13.0'
 use_frameworks!
 
 source 'git@github.com:EOSLaoMao/laomao-pods.git'
@@ -10,6 +10,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 inhibit_all_warnings!
 
 def set_up_local_pods
+    pod 'EOSWallet', :path => '../EOSWallet'
     pod 'EosioSwift', :path => '../eosio-swift'
     pod 'EosioSwiftAbieosSerializationProvider', :path => '../eosio-swift-abieos-serialization-provider'
     pod 'EosioSwiftVault', :path => '../eosio-swift-vault'
@@ -19,6 +20,7 @@ def set_up_local_pods
 end
 
 def set_up_remote_pods
+    pod 'EOSWallet', :path => '../EOSWallet'
     pod 'EosioSwift'
     pod 'EosioSwiftAbieosSerializationProvider'
     pod 'EosioSwiftVault'

@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -29,7 +27,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iO4-ri-brJ">
-                                <rect key="frame" x="0.0" y="20" width="375" height="688"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="708"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="showHelpCell" rowHeight="77" id="s8E-Xd-L4L">
@@ -86,7 +84,7 @@
                                                             <string key="content">You can conveniently use this device as one of your most secure Authorizers (or Auths). Your Auths are permanently stored in your device’s hardware, guarded with biometric security. You can now easily interact with Applications, associating new and existing accounts with your new Auth.</string>
                                                             <attributes>
                                                                 <color key="NSColor" red="0.40054237840000001" green="0.4820854664" blue="0.61177909370000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                <font key="NSFont" size="15" name=".AppleSystemUIFont"/>
+                                                                <font key="NSFont" metaFont="system" size="15"/>
                                                                 <real key="NSKern" value="0.34999999999999998"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.2" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
@@ -283,21 +281,21 @@
             <objects>
                 <tableViewController storyboardIdentifier="importTVC" id="Enh-Bx-NiE" customClass="ImportKeyTableViewController" customModule="EosioReferenceAuthenticator" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="qVM-X6-TAq">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <sections>
                             <tableViewSection id="JGu-O6-e80">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="437" id="vU0-Kf-N6U">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="437"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="437"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vU0-Kf-N6U" id="ia6-m3-rGk">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="437"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8NT-Zr-4ML" userLabel="PasteKeyStack">
-                                                    <rect key="frame" x="32" y="125.5" width="325" height="40"/>
+                                                    <rect key="frame" x="32" y="122.5" width="325" height="40"/>
                                                     <subviews>
                                                         <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Paste Key" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="C0g-k6-SJ8">
                                                             <rect key="frame" x="0.0" y="0.0" width="217" height="40"/>
@@ -336,13 +334,13 @@
                                                     </subviews>
                                                 </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XIi-f9-WiT">
-                                                    <rect key="frame" x="16" y="15" width="343" height="60.5"/>
+                                                    <rect key="frame" x="16" y="15" width="343" height="57.5"/>
                                                     <attributedString key="attributedText">
                                                         <fragment>
                                                             <string key="content">Securely store additional Authenticators below by pasting in private keys. Importing your Auths will allow you to authenticate seamlessly.</string>
                                                             <attributes>
                                                                 <color key="NSColor" red="0.37647000000000003" green="0.48626999999999998" blue="0.62353000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <font key="NSFont" size="16" name="SourceSansPro-Regular"/>
+                                                                <font key="NSFont" metaFont="system" size="16"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
@@ -390,7 +388,7 @@
                                                     </connections>
                                                 </button>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bl5-Nn-6G8">
-                                                    <rect key="frame" x="18" y="173.5" width="339" height="1"/>
+                                                    <rect key="frame" x="18" y="170.5" width="339" height="1"/>
                                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="1" id="x9c-p9-K4V"/>
@@ -404,19 +402,19 @@
                                                     </constraints>
                                                 </view>
                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Paste Key" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6KK-wJ-6Gm">
-                                                    <rect key="frame" x="18" y="110" width="49.5" height="15.5"/>
+                                                    <rect key="frame" x="18" y="107" width="49.5" height="15.5"/>
                                                     <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="12"/>
                                                     <color key="textColor" red="0.56517881155014038" green="0.64681792259216309" blue="0.76471829414367676" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Nickname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Viv-Yx-x4f">
-                                                    <rect key="frame" x="18" y="196.5" width="92.5" height="86.5"/>
+                                                    <rect key="frame" x="18" y="193.5" width="92.5" height="89.5"/>
                                                     <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="12"/>
                                                     <color key="textColor" red="0.56517881155014038" green="0.64681792259216309" blue="0.76471829414367676" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Gk6-YR-655">
-                                                    <rect key="frame" x="18" y="180.5" width="339" height="12"/>
+                                                    <rect key="frame" x="18" y="177.5" width="339" height="12"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="infoIcon" translatesAutoresizingMaskIntoConstraints="NO" id="LqN-ac-P8N">
                                                             <rect key="frame" x="0.0" y="0.0" width="12" height="12"/>
@@ -524,14 +522,14 @@
             <objects>
                 <tableViewController title="Edit Key" id="nQZ-1l-UvR" customClass="AuthenticatorDetailsTableViewController" customModule="EosioReferenceAuthenticator" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="8qT-OG-ZE9">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <sections>
                             <tableViewSection id="B2H-HQ-Wga">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="383" id="oRO-Nq-jYB">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="383"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="383"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oRO-Nq-jYB" id="viP-3Y-vzQ">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="383"/>
@@ -692,8 +690,9 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HOB-vW-T3z" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="WoV-7W-Blr">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
