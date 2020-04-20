@@ -16,20 +16,13 @@ protocol ImportKey {
 
 extension ImportKey where Self: UIViewController {
     func importKey(_ privateKey: String, name: String) throws {
-        var key = EosioVault.VaultKey()
-        do {
-            key = try vault.addExternal(eosioPrivateKey: privateKey)
-        } catch {
-            if error.eosioError.errorCode != .keyAlreadyExists {
-                throw error
-            }
-        }
+        var key = try vault.addExternal(eosioPrivateKey: privateKey)
         key.name = name
         let _ = vault.update(key: key)
-        
+
         let successViewController = SuccessCheckmarkViewController()
         successViewController.modalPresentationStyle = .overCurrentContext
-        
+
         self.view.endEditing(true)
 
         self.present(successViewController, animated: false, completion: nil)
@@ -140,7 +133,7 @@ class ImportKeyTableViewController: UITableViewController, ImportKey {
         do {
             try importKey(privateKey, name: name)
         } catch {
-            showAlert(title: "Failed to Import", message: "There was an error importing this key. Does it already exist on this device?")
+            showAlert(title: "Failed to Import", message: error.localizedDescription)
         }
     }
 

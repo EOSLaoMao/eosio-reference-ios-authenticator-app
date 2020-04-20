@@ -23,7 +23,6 @@ class AuthorizersListViewController: UIViewController {
     //var keychainMetaKeys: [EosioVault.KeyMetadata]?
     var keys: [EosioVault.VaultKey]?
     private let vault = EosioVault(accessGroup: Constants.vaultAccessGroup)
-    private var deleteKeysTimerDictionary: [String: Timer] = [:]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -112,33 +111,8 @@ class AuthorizersListViewController: UIViewController {
             guard let key = keys?[validIndexPath.row] else { return }
             guard key.isEnabled == true else { return }
             authenticatorVC.key = key
-            authenticatorVC.keyDeletePressed = { [weak self] publicKey in
-                self?.deleteKey(publicKey: publicKey, seconds: 3)
-            }
         default: break // do nothing
         }
-    }
-
-    private func deleteKey(publicKey: String, seconds: Int) {
-        let timer = Timer.scheduledTimer(withTimeInterval: Double(seconds), repeats: false) { _ in
-            //delete key
-            do {
-                try self.vault.deleteKey(eosioPublicKey: publicKey)
-            } catch {
-                let notDeletedAlert = UIAlertController(title: "Cannot delete key", message: "", preferredStyle: .alert)
-                self.present(notDeletedAlert, animated: true, completion: {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
-                        notDeletedAlert.dismiss(animated: true, completion: nil)
-                        self.updateDataSourceWithCurrentKeys()
-                        self.tableView.reloadSections(IndexSet(integer: 1), with: .automatic)
-                    })
-                })
-                return
-            }
-            self.updateDataSourceWithCurrentKeys()
-            self.tableView.reloadSections(IndexSet(integer: 1), with: .automatic)
-        }
-        self.deleteKeysTimerDictionary[publicKey] = timer // save timer reference for "undo" action
     }
 
     private func showHelperTextRow() {
@@ -204,18 +178,7 @@ extension AuthorizersListViewController: UITableViewDataSource, UITableViewDeleg
                 showHelperTextRow()
             }
         default:
-            // keys section
-            guard var validKey = keys?[indexPath.row] else { return }
-            guard validKey.isEnabled == false else { return }
-            let publicKey = validKey.eosioPublicKey
-            let timerToStop = self.deleteKeysTimerDictionary[publicKey]
-            timerToStop?.invalidate()
-            self.deleteKeysTimerDictionary.removeValue(forKey: publicKey)
-            // enable the key back (aka "Un-delete")
-            validKey.isEnabled = true
-            let _ = self.vault.update(key: validKey)
-            self.updateDataSourceWithCurrentKeys()
-            self.tableView.reloadSections(IndexSet(integer: 1), with: .automatic)
+           return
         }
     }
 

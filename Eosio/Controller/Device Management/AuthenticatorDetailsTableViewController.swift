@@ -20,7 +20,6 @@ class AuthenticatorDetailsTableViewController: UITableViewController {
 
     var key: EosioVault.VaultKey? // set by parent View Controller
     private let vault = EosioVault(accessGroup: Constants.vaultAccessGroup)
-    var keyDeletePressed: ((_ publicKey: String)->Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -119,7 +118,6 @@ class AuthenticatorDetailsTableViewController: UITableViewController {
     }
 
     @IBAction func deleteKeyPressed(_ sender: UIButton) {
-
         guard let validPublicKey = key?.eosioPublicKey else {
             let noValidKeyAlert = UIAlertController(title: "Error: \nNo valid key found", message: "", preferredStyle: .alert)
             self.present(noValidKeyAlert, animated: true, completion: {
@@ -129,14 +127,42 @@ class AuthenticatorDetailsTableViewController: UITableViewController {
             })
             return
         }
-
-        self.key?.isEnabled = false
-        guard let validKey = self.key else { return }
-        if self.vault.update(key: validKey) {
-            DispatchQueue.main.async {
-                self.keyDeletePressed?(validPublicKey) // notify parent
-                self.navigationController?.popViewController(animated: true)
+        
+        let alertController = UIAlertController(title: nil, message: "Are you sure you want to delete this key?", preferredStyle: .actionSheet)
+        let confirmAction = UIAlertAction(title: "Confirm", style: .destructive) { [weak self] _ in
+            let secondAlert = UIAlertController(title: nil, message: "No recovery after deletion, do you still want to delete it?", preferredStyle: .actionSheet)
+            let secondConfirm = UIAlertAction(title: "Confirm", style: .destructive) { [weak self] _ in
+                self?.deleteKey(validPublicKey)
             }
+            let secondCancel = UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil)
+            secondAlert.addAction(secondConfirm)
+            secondAlert.addAction(secondCancel)
+            self?.present(secondAlert, animated: true, completion: nil)
+        }
+        let cancelAction = UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(confirmAction)
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func deleteKey(_ publicKey: String) {
+        do {
+            self.key?.isEnabled = false
+            guard let validKey = self.key else { return }
+            if self.vault.update(key: validKey) {
+                try self.vault.deleteKey(eosioPublicKey: publicKey)
+                DispatchQueue.main.async {
+                    self.navigationController?.popViewController(animated: true)
+                }
+            }
+        } catch {
+            let notDeletedAlert = UIAlertController(title: "Cannot delete key", message: "", preferredStyle: .alert)
+            self.present(notDeletedAlert, animated: true, completion: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+                    notDeletedAlert.dismiss(animated: true, completion: nil)
+                })
+            })
+            return
         }
     }
 }

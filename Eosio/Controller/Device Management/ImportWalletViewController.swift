@@ -19,8 +19,24 @@ class ImportWalletViewController: UIViewController, ImportKey {
     @IBOutlet var textView: UITextView!
     @IBOutlet var openFileBtn: UIButton!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        textView.layer.borderColor = UIColor.customDarkBlue.cgColor
+        textView.layer.borderWidth = 1.0
+        textView.layer.cornerRadius = 6.0
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+        self.view.endEditing(true)
+    }
+    
     @IBAction func cancelTapped(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func pasteAction(_ sender: UIButton) {
+        textView.text = UIPasteboard.general.string
     }
     
     @IBAction func openFilesApp(_ sender: UIButton!) {
