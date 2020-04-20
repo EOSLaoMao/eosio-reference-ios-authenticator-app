@@ -243,7 +243,7 @@
                                             <color key="titleColor" red="0.40054237842559814" green="0.4820854663848877" blue="0.61177909374237061" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </state>
                                         <connections>
-                                            <segue destination="HOB-vW-T3z" kind="presentation" id="3t7-0v-yua"/>
+                                            <action selector="addAdditionalAuthenticatorWithSender:" destination="sKH-RI-nbC" eventType="touchUpInside" id="Eyd-my-FYl"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -270,6 +270,8 @@
                     <size key="freeformSize" width="375" height="800"/>
                     <connections>
                         <outlet property="tableView" destination="iO4-ri-brJ" id="pdD-u7-LhH"/>
+                        <segue destination="HOB-vW-T3z" kind="presentation" identifier="FromManualSegue" id="MT0-oR-zYS"/>
+                        <segue destination="vsv-Sm-Vnb" kind="presentation" identifier="FromWalletSegue" id="fZc-rj-QaH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X8v-2b-LQq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -515,7 +517,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="63v-ZO-a76" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1192.8" y="1734.7826086956522"/>
+            <point key="canvasLocation" x="865" y="2437"/>
         </scene>
         <!--Edit Key-->
         <scene sceneID="HKI-wu-4He">
@@ -536,7 +538,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Key Name" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="nou-8V-o7C">
-                                                    <rect key="frame" x="31" y="60" width="326" height="44"/>
+                                                    <rect key="frame" x="31" y="64.5" width="326" height="44"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="tintColor" red="0.40054237840000001" green="0.4820854664" blue="0.61177909370000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <constraints>
@@ -555,14 +557,14 @@
                                                     </connections>
                                                 </textField>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qfC-Bv-Whc">
-                                                    <rect key="frame" x="18" y="106" width="339" height="1"/>
+                                                    <rect key="frame" x="18" y="110.5" width="339" height="1"/>
                                                     <color key="backgroundColor" red="0.035921297970000002" green="0.07422567159" blue="0.1843244433" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="1" id="Ysu-6Z-XeT"/>
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Key Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FhK-nj-yPz">
-                                                    <rect key="frame" x="18" y="29" width="52" height="31"/>
+                                                    <rect key="frame" x="18" y="29" width="56" height="35.5"/>
                                                     <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="12"/>
                                                     <color key="textColor" red="0.56517881160000005" green="0.64681792260000004" blue="0.76471829410000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <nil key="highlightedColor"/>
@@ -575,7 +577,7 @@
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Public Key" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hd0-Ri-ymi">
-                                                    <rect key="frame" x="18" y="145" width="54" height="15.5"/>
+                                                    <rect key="frame" x="18" y="149.5" width="57.5" height="14"/>
                                                     <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="12"/>
                                                     <color key="textColor" red="0.56517881160000005" green="0.64681792260000004" blue="0.76471829410000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <nil key="highlightedColor"/>
@@ -594,7 +596,7 @@
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" text="PUB_K1_5j67P1W2RyBXAL8sNzYcDLox3yLpxyrxgkYy1xsXzVCw1oi9eG" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Sh-Dy-waW">
-                                                    <rect key="frame" x="31" y="170.5" width="326" height="40.5"/>
+                                                    <rect key="frame" x="31" y="173.5" width="326" height="37.5"/>
                                                     <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="16"/>
                                                     <color key="textColor" red="0.56517881160000005" green="0.64681792260000004" blue="0.76471829410000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <nil key="highlightedColor"/>
@@ -616,7 +618,7 @@
                                                     </connections>
                                                 </button>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="RGk-RP-sug" userLabel="WarningStack">
-                                                    <rect key="frame" x="18" y="115" width="339" height="12"/>
+                                                    <rect key="frame" x="18" y="119.5" width="339" height="12"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="infoIcon" translatesAutoresizingMaskIntoConstraints="NO" id="gfx-A5-8jX">
                                                             <rect key="frame" x="0.0" y="0.0" width="12" height="12"/>
@@ -682,7 +684,96 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4iq-QI-FDd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1213.5999999999999" y="905.3973013493254"/>
+            <point key="canvasLocation" x="1172" y="907"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="IKK-QW-8jf">
+            <objects>
+                <navigationController id="vsv-Sm-Vnb" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="daS-G0-Xlw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Bkt-vy-7Lk" kind="relationship" relationship="rootViewController" id="FGN-FD-yUt"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hwh-OM-aia" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-353" y="1735"/>
+        </scene>
+        <!--Import Wallet View Controller-->
+        <scene sceneID="RHB-7k-BoZ">
+            <objects>
+                <viewController id="Bkt-vy-7Lk" customClass="ImportWalletViewController" customModule="EosioReferenceAuthenticator" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="i3W-dl-tca">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YkY-7e-tgV">
+                                <rect key="frame" x="16" y="113" width="343" height="206"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemGray3Color" red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="0.122942917" green="0.1954764128" blue="0.42355126139999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WR8-mq-LZo">
+                                <rect key="frame" x="16" y="363" width="343" height="50"/>
+                                <color key="backgroundColor" red="0.122942917" green="0.1954764128" blue="0.42355126139999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="bRE-gP-Cgn"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="17"/>
+                                <state key="normal" title="Import">
+                                    <color key="titleColor" red="0.97647058819999999" green="0.98039215690000003" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="importWalletKeys:" destination="Bkt-vy-7Lk" eventType="touchUpInside" id="3lf-Oo-vi1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nsl-A0-Luz">
+                                <rect key="frame" x="111" y="427" width="153" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="Import From &quot;Files&quot; app">
+                                    <color key="titleColor" red="0.122942917" green="0.1954764128" blue="0.42355126139999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="openFilesApp:" destination="Bkt-vy-7Lk" eventType="touchUpInside" id="aB5-kM-CTS"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="WR8-mq-LZo" firstAttribute="centerY" secondItem="i3W-dl-tca" secondAttribute="centerY" multiplier="1.2" id="R4e-V1-GBH"/>
+                            <constraint firstItem="nsl-A0-Luz" firstAttribute="centerX" secondItem="i3W-dl-tca" secondAttribute="centerX" id="cL2-0M-aMv"/>
+                            <constraint firstItem="nsl-A0-Luz" firstAttribute="top" secondItem="WR8-mq-LZo" secondAttribute="bottom" constant="14" id="i6y-G8-PWR"/>
+                            <constraint firstItem="WR8-mq-LZo" firstAttribute="leading" secondItem="fug-CR-Qrk" secondAttribute="leading" constant="16" id="iax-Un-A2j"/>
+                            <constraint firstItem="fug-CR-Qrk" firstAttribute="trailing" secondItem="WR8-mq-LZo" secondAttribute="trailing" constant="16" id="xav-Ax-Sdj"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="fug-CR-Qrk"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="rfn-b9-5af">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="zRW-Ed-jwU">
+                            <connections>
+                                <action selector="cancelTapped:" destination="Bkt-vy-7Lk" id="Ftp-h0-Ck4"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="openFileBtn" destination="nsl-A0-Luz" id="HEs-Tj-gSc"/>
+                        <outlet property="textView" destination="YkY-7e-tgV" id="gt4-aO-hI9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="26L-pY-QA5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-354.39999999999998" y="2435.5322338830588"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ngm-2m-KZ4">
@@ -701,7 +792,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iMM-QB-7hp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="345" y="1735"/>
+            <point key="canvasLocation" x="866" y="1735"/>
         </scene>
     </scenes>
     <resources>

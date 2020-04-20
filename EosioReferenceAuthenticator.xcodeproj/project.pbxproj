@@ -49,6 +49,8 @@
 		2867AF8C227362D20095F4DD /* AppMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2867AF8B227362D20095F4DD /* AppMetadata.swift */; };
 		2876DCC22267A2D90022E8C3 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2876DCC12267A2D90022E8C3 /* AppError.swift */; };
 		2876DCC42267B8C50022E8C3 /* EosioTransactionAssert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2876DCC32267B8C40022E8C3 /* EosioTransactionAssert.swift */; };
+		29C7AE9F244D69600090F7E5 /* ErrorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C7AE9E244D69600090F7E5 /* ErrorExtension.swift */; };
+		29C7AEA1244D6D500090F7E5 /* ImportWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C7AEA0244D6D500090F7E5 /* ImportWalletViewController.swift */; };
 		6B0BE7622192033B00C417D7 /* QueryItems+dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE7612192033B00C417D7 /* QueryItems+dictionary.swift */; };
 		6B0BE7642192034800C417D7 /* Data＋urlSafeBase64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE7632192034800C417D7 /* Data＋urlSafeBase64.swift */; };
 		6B1206F121B9741D0050D955 /* AppManifestProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B1206F021B9741D0050D955 /* AppManifestProvider.swift */; };
@@ -202,6 +204,8 @@
 		2867AF8B227362D20095F4DD /* AppMetadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppMetadata.swift; sourceTree = "<group>"; };
 		2876DCC12267A2D90022E8C3 /* AppError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		2876DCC32267B8C40022E8C3 /* EosioTransactionAssert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EosioTransactionAssert.swift; sourceTree = "<group>"; };
+		29C7AE9E244D69600090F7E5 /* ErrorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorExtension.swift; sourceTree = "<group>"; };
+		29C7AEA0244D6D500090F7E5 /* ImportWalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportWalletViewController.swift; sourceTree = "<group>"; };
 		38F30BC8EDB57209F606FA7C /* Pods_EosioReferenceAuthenticatorTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EosioReferenceAuthenticatorTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		40CCD23A08636156C7FA77B8 /* Pods-EosioReferenceAuthenticatorUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EosioReferenceAuthenticatorUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EosioReferenceAuthenticatorUITests/Pods-EosioReferenceAuthenticatorUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		43C5A800F455CF15B3AB9947 /* Pods-EosioReferenceAuthenticator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EosioReferenceAuthenticator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EosioReferenceAuthenticator/Pods-EosioReferenceAuthenticator.debug.xcconfig"; sourceTree = "<group>"; };
@@ -499,6 +503,7 @@
 			isa = PBXGroup;
 			children = (
 				70CEAA11216D054900D50F3B /* ImportKeyTableViewController.swift */,
+				29C7AEA0244D6D500090F7E5 /* ImportWalletViewController.swift */,
 				706FC560219C784B00966FEE /* AuthorizersListViewController.swift */,
 				706FC564219C81AB00966FEE /* AuthorizersListDeviceCell.swift */,
 				BBA7326E220DFE9D00008811 /* UndoDeletedKeyCell.swift */,
@@ -604,6 +609,7 @@
 			children = (
 				B4DDC33421C342660053E054 /* NetworkOfflineViewController.swift */,
 				1FBD9E8621D6B5D5002E453E /* SomethingsNotRightErrorViewController.swift */,
+				29C7AE9E244D69600090F7E5 /* ErrorExtension.swift */,
 			);
 			path = "Error Screens";
 			sourceTree = "<group>";
@@ -940,6 +946,7 @@
 				283012162268FD1700E91084 /* EosioTransactionActionRicardian.swift in Sources */,
 				6B9B0420219B64B5007CAA51 /* AuthenticatorRequestViewController+SelectiveDisclosure.swift in Sources */,
 				6B0BE7642192034800C417D7 /* Data＋urlSafeBase64.swift in Sources */,
+				29C7AE9F244D69600090F7E5 /* ErrorExtension.swift in Sources */,
 				1FF99F052201FDA60064F7A0 /* RicardianActionView.swift in Sources */,
 				6BBC713221B6E52D007B0063 /* ResourceHash.swift in Sources */,
 				705F54792178B98200E79FF2 /* SuccessCheckmarkViewController.swift in Sources */,
@@ -949,6 +956,7 @@
 				6B720E8421DEA84F00507066 /* String+urlDomain.swift in Sources */,
 				70CEAA12216D054900D50F3B /* ImportKeyTableViewController.swift in Sources */,
 				28515BDB22678218000E8F95 /* DataFetcher.swift in Sources */,
+				29C7AEA1244D6D500090F7E5 /* ImportWalletViewController.swift in Sources */,
 				285355582270A95200CD285B /* EosioVaultKeyExtensions.swift in Sources */,
 				1FF99F072201FDA60064F7A0 /* WebViewPreLoader.swift in Sources */,
 				28535547226F5EE700CD285B /* EosioTransactionContractTemplateToolkit.swift in Sources */,

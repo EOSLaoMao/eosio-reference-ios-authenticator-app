@@ -9,8 +9,41 @@
 import UIKit
 import EosioSwiftVault
 
+protocol ImportKey {
+    var vault: EosioVault {get}
+    func importKey(_ key: String, name: String) throws
+}
 
-class ImportKeyTableViewController: UITableViewController {
+extension ImportKey where Self: UIViewController {
+    func importKey(_ privateKey: String, name: String) throws {
+        var key = EosioVault.VaultKey()
+        do {
+            key = try vault.addExternal(eosioPrivateKey: privateKey)
+        } catch {
+            if error.eosioError.errorCode != .keyAlreadyExists {
+                throw error
+            }
+        }
+        key.name = name
+        let _ = vault.update(key: key)
+        
+        let successViewController = SuccessCheckmarkViewController()
+        successViewController.modalPresentationStyle = .overCurrentContext
+        
+        self.view.endEditing(true)
+
+        self.present(successViewController, animated: false, completion: nil)
+        NotificationCenter.default.post(name: ImportKeyTableViewController.importKeySucceedNotification, object: nil)
+        successViewController.dismissButtonPressed = { [weak self] in
+            guard let strongSelf = self else { return }
+            DispatchQueue.main.async {
+                strongSelf.dismiss(animated: true, completion: nil)
+            }
+        }
+    }
+}
+
+class ImportKeyTableViewController: UITableViewController, ImportKey {
 
     @IBOutlet weak var privateKeyField: UITextField!
     @IBOutlet weak var privateKeyUnderlineView: UIView!
@@ -27,8 +60,7 @@ class ImportKeyTableViewController: UITableViewController {
 
     static let importKeySucceedNotification = NSNotification.Name("importKeySucceedNotification")
     
-    private let vault = EosioVault(accessGroup: Constants.vaultAccessGroup)
-    public var completion: ((_ didImport: Bool) -> ())?
+    let vault: EosioVault = EosioVault(accessGroup: Constants.vaultAccessGroup)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,7 +99,6 @@ class ImportKeyTableViewController: UITableViewController {
     }
     
     @IBAction func cancelTapped(_ sender: UIBarButtonItem) {
-        completion?(false)
         self.dismiss(animated: true, completion: nil)
     }
 
@@ -91,7 +122,7 @@ class ImportKeyTableViewController: UITableViewController {
         self.keyNameHelperLabel.isHidden = false
     }
 
-    @IBAction func didTapImport(_ sender: Any) {
+    @IBAction func didTapImport(_ sender: UIButton!) {
         guard let privateKey = privateKeyField.text else { return } // unwrap
         guard isValidKey(keyString: privateKey) == true else {
             privateKeyField.applyShakeAnimation()
@@ -105,20 +136,9 @@ class ImportKeyTableViewController: UITableViewController {
             displayError(withErrorStack: self.keyNameErrorMessageStack, andUnderLineView: self.keyNameUnderlineView)
             return
         }
+        
         do {
-            try importKey(key: privateKey, name: name)
-            let successViewController = SuccessCheckmarkViewController()
-            successViewController.modalPresentationStyle = .overCurrentContext
-            self.keyNameField.resignFirstResponder()
-            self.privateKeyField.resignFirstResponder()
-            self.present(successViewController, animated: false, completion: nil)
-            NotificationCenter.default.post(name: ImportKeyTableViewController.importKeySucceedNotification, object: nil)
-            successViewController.dismissButtonPressed = { [weak self] in
-                guard let strongSelf = self else { return }
-                DispatchQueue.main.async {
-                    strongSelf.dismiss(animated: true, completion: nil)
-                }
-            }
+            try importKey(privateKey, name: name)
         } catch {
             showAlert(title: "Failed to Import", message: "There was an error importing this key. Does it already exist on this device?")
         }
@@ -146,12 +166,6 @@ class ImportKeyTableViewController: UITableViewController {
             lineView.backgroundColor = UIColor.customDarkBlue
         }
     }
-    
-    func importKey(key: String, name: String) throws {
-        var key = try vault.addExternal(eosioPrivateKey: key)
-        key.name = name
-        let _ = vault.update(key: key)
-    }
 
     func validateKey(keyString: String) -> Error? {
         //implement specific errors for dev mode?
@@ -165,12 +179,6 @@ class ImportKeyTableViewController: UITableViewController {
     
     func isValidKey(keyString: String) -> Bool {
         return validateKey(keyString: keyString) == nil
-    }
-    
-    func showAlert(title: String, message: String?) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        self.present(alert, animated: true, completion: nil)
     }
 
     // MARK: - Table view data source: No data source methods => all rows & cells generated by storyboard

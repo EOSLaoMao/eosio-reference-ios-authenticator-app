@@ -90,6 +90,19 @@ class AuthorizersListViewController: UIViewController {
         self.navigationController?.pushViewController(vc, animated: true)
         
     }
+    
+    @IBAction func addAdditionalAuthenticator(sender: UIButton!) {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let fromWalletAction = UIAlertAction(title: "import from wallet file", style: .default) { [unowned self] _ in
+            self.performSegue(withIdentifier: "FromWalletSegue", sender: nil)
+        }
+        let fromManually = UIAlertAction(title: "manually input the private key", style: .default) { [unowned self] _ in
+            self.performSegue(withIdentifier: "FromManualSegue", sender: nil)
+        }
+        alertController.addAction(fromWalletAction)
+        alertController.addAction(fromManually)
+        self.present(alertController, animated: true, completion: nil)
+    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
@@ -211,4 +224,3 @@ extension AuthorizersListViewController: UITableViewDataSource, UITableViewDeleg
     }
 
 }
-
