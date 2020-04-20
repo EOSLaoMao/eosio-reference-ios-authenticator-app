@@ -71,7 +71,6 @@ class ImportWalletViewController: UIViewController, ImportKey {
             pwdAlert.addAction(cancel)
             pwdAlert.addTextField { textField in
                 textField.isSecureTextEntry = true
-                textField.text = "PW5Kf7h86a2WvStSY3f5M6ntdiqqD7a6whvbMrWZMNSMtyrUYD92P"
             }
             self.present(pwdAlert, animated: true, completion: nil)
         } catch {
