@@ -98,8 +98,10 @@ class AuthorizersListViewController: UIViewController {
         let fromManually = UIAlertAction(title: "manually input the private key", style: .default) { [unowned self] _ in
             self.performSegue(withIdentifier: "FromManualSegue", sender: nil)
         }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(fromWalletAction)
         alertController.addAction(fromManually)
+        alertController.addAction(cancel)
         self.present(alertController, animated: true, completion: nil)
     }
 

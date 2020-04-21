@@ -404,13 +404,13 @@
                                                     </constraints>
                                                 </view>
                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Paste Key" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6KK-wJ-6Gm">
-                                                    <rect key="frame" x="18" y="107" width="49.5" height="15.5"/>
+                                                    <rect key="frame" x="18" y="108.5" width="54.5" height="14"/>
                                                     <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="12"/>
                                                     <color key="textColor" red="0.56517881155014038" green="0.64681792259216309" blue="0.76471829414367676" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Nickname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Viv-Yx-x4f">
-                                                    <rect key="frame" x="18" y="193.5" width="92.5" height="89.5"/>
+                                                    <rect key="frame" x="18" y="193.5" width="99" height="89.5"/>
                                                     <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="12"/>
                                                     <color key="textColor" red="0.56517881155014038" green="0.64681792259216309" blue="0.76471829414367676" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <nil key="highlightedColor"/>
@@ -711,7 +711,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YkY-7e-tgV">
-                                <rect key="frame" x="16" y="153.5" width="343" height="145"/>
+                                <rect key="frame" x="16" y="172.5" width="343" height="145"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="145" id="l2t-yV-Df8"/>
                                 </constraints>
@@ -720,7 +720,7 @@
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WR8-mq-LZo">
-                                <rect key="frame" x="16" y="328.5" width="343" height="50"/>
+                                <rect key="frame" x="16" y="347.5" width="343" height="50"/>
                                 <color key="backgroundColor" red="0.122942917" green="0.1954764128" blue="0.42355126139999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="bRE-gP-Cgn"/>
@@ -740,7 +740,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nsl-A0-Luz">
-                                <rect key="frame" x="111" y="392.5" width="153" height="29"/>
+                                <rect key="frame" x="111" y="411.5" width="153" height="29"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="Import From &quot;Files&quot; app">
                                     <color key="titleColor" red="0.122942917" green="0.1954764128" blue="0.42355126139999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -750,12 +750,12 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uU0-ZU-0F2">
-                                <rect key="frame" x="16" y="76" width="343" height="57.5"/>
+                                <rect key="frame" x="16" y="76" width="343" height="76.5"/>
                                 <attributedString key="attributedText">
                                     <fragment>
-                                        <string key="content">Please copy the content of the wallet file into the following field, you can also import the wallet file by placing it in the "Files" app.</string>
+                                        <string key="content">Please copy the content of your wallet file into the following field, you can also import your wallet file by placing it in the "Files" app, the file must be with a ".wallet" extension.</string>
                                         <attributes>
-                                            <color key="NSColor" red="0.37647000000000003" green="0.48626999999999998" blue="0.62353000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <font key="NSFont" metaFont="system" size="16"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
@@ -764,7 +764,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="58Z-o2-XT2" customClass="DarkBlueButtonWhiteTitle" customModule="EosioReferenceAuthenticator" customModuleProvider="target">
-                                <rect key="frame" x="291" y="260.5" width="60" height="30"/>
+                                <rect key="frame" x="291" y="279.5" width="60" height="30"/>
                                 <color key="backgroundColor" red="0.122942917" green="0.1954764128" blue="0.42355126139999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="8Mw-Jq-npv"/>
