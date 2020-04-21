@@ -20,7 +20,7 @@ def set_up_local_pods
 end
 
 def set_up_remote_pods
-    pod 'EOSWallet', :path => '../EOSWallet'
+    pod 'EOSWallet'
     pod 'EosioSwift'
     pod 'EosioSwiftAbieosSerializationProvider'
     pod 'EosioSwiftVault'
