@@ -23,8 +23,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UserDefaults.Eosio.set(false, forKey: .disableDeleteKeysAbility)
         
-        let navigationBarAppearace = UINavigationBar.appearance()
-        navigationBarAppearace.isTranslucent = false
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground()
+        appearance.backgroundColor = .white
+        appearance.titleTextAttributes = EosioAppearance.navBarTitleAttributes
+        appearance.largeTitleTextAttributes = EosioAppearance.navBarLargeTitleAttributes
+               
+        UINavigationBar.appearance().tintColor = UIColor.customDarkBlue
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
         
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "authorizersListVC") as! AuthorizersListViewController
         self.navigationController = UINavigationController(rootViewController: vc)
@@ -32,10 +39,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Configure NavigationBar
         self.navigationController?.view.backgroundColor = .white
         self.navigationController?.navigationBar.prefersLargeTitles = true
-        self.navigationController?.navigationBar.titleTextAttributes = EosioAppearance.navBarTitleAttributes
-        self.navigationController?.navigationBar.largeTitleTextAttributes = EosioAppearance.navBarLargeTitleAttributes
-        self.navigationController?.navigationBar.tintColor = UIColor.customDarkBlue
-        self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow") // removes bottom line on NavBar (to show it, set value back to false)
         self.window?.rootViewController = self.navigationController
         self.window?.makeKeyAndVisible()
         
