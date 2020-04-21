@@ -128,10 +128,10 @@ class AuthenticatorDetailsTableViewController: UITableViewController {
             return
         }
         
-        let alertController = UIAlertController(title: nil, message: "Are you sure you want to delete this key?", preferredStyle: .actionSheet)
-        let confirmAction = UIAlertAction(title: "Confirm", style: .destructive) { [weak self] _ in
+        let alertController = UIAlertController(title: nil, message: "Please make sure you have other backups of this key before you delete it. Are you sure you want to delete this key?", preferredStyle: .actionSheet)
+        let confirmAction = UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
             let secondAlert = UIAlertController(title: nil, message: "No recovery after deletion, do you still want to delete it?", preferredStyle: .actionSheet)
-            let secondConfirm = UIAlertAction(title: "Confirm", style: .destructive) { [weak self] _ in
+            let secondConfirm = UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
                 self?.deleteKey(validPublicKey)
             }
             let secondCancel = UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil)

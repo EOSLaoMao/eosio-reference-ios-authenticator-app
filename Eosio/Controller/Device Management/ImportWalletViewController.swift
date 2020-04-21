@@ -12,6 +12,33 @@ import EosioSwiftEcc
 import EosioSwiftVault
 import EOSWallet
 
+class DocumentBrowserViewController: UINavigationController {
+    let browserViewController: UIDocumentBrowserViewController
+    
+    init() {
+        browserViewController = UIDocumentBrowserViewController(forOpeningFilesWithContentTypes: ["jp.laomao.authenticator"])
+        browserViewController.allowsDocumentCreation = false
+        browserViewController.allowsPickingMultipleItems = false
+        browserViewController.shouldShowFileExtensions = true
+        super.init(rootViewController: browserViewController)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let backItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(backAction))
+        browserViewController.navigationItem.leftBarButtonItem = backItem
+    }
+    
+    @objc func backAction() {
+        self.dismiss(animated: true, completion: nil)
+    }
+}
+
 class ImportWalletViewController: UIViewController, ImportKey {
     
     let vault: EosioVault = EosioVault(accessGroup: Constants.vaultAccessGroup)
@@ -40,10 +67,8 @@ class ImportWalletViewController: UIViewController, ImportKey {
     }
     
     @IBAction func openFilesApp(_ sender: UIButton!) {
-        let documentVC = UIDocumentBrowserViewController(forOpeningFilesWithContentTypes: ["jp.laomao.authenticator"])
-        documentVC.allowsDocumentCreation = false
-        documentVC.allowsPickingMultipleItems = false
-        documentVC.delegate = self
+        let documentVC = DocumentBrowserViewController()
+        documentVC.browserViewController.delegate = self
         self.present(documentVC, animated: true, completion: nil)
     }
     
