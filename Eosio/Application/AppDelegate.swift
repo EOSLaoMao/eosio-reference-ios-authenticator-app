@@ -32,6 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().tintColor = UIColor.customDarkBlue
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        UINavigationBar.appearance(whenContainedInInstancesOf: [DocumentBrowserViewController.self]).tintColor = UIColor.customDarkBlue
         
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "authorizersListVC") as! AuthorizersListViewController
         self.navigationController = UINavigationController(rootViewController: vc)
