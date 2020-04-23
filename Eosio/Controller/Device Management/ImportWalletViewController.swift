@@ -43,6 +43,7 @@ class ImportWalletViewController: UIViewController, ImportKey {
     
     let vault: EosioVault = EosioVault(accessGroup: Constants.vaultAccessGroup)
     
+    @IBOutlet var nicknameField: UITextField!
     @IBOutlet var textView: UITextView!
     @IBOutlet var openFileBtn: UIButton!
     
@@ -51,11 +52,6 @@ class ImportWalletViewController: UIViewController, ImportKey {
         textView.layer.borderColor = UIColor.customDarkBlue.cgColor
         textView.layer.borderWidth = 1.0
         textView.layer.cornerRadius = 6.0
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesEnded(touches, with: event)
-        self.view.endEditing(true)
     }
     
     @IBAction func cancelTapped(_ sender: UIBarButtonItem) {
@@ -78,6 +74,10 @@ class ImportWalletViewController: UIViewController, ImportKey {
             self.showAlert(title: "", message: "You must input content of your wallet file")
             return
         }
+        guard let nickname = nicknameField.text, nickname.count > 0 else {
+            self.showAlert(title: "", message: "You must have at least one character for your key name")
+            return
+        }
         do {
             let decoder = JSONDecoder()
             decoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -90,7 +90,7 @@ class ImportWalletViewController: UIViewController, ImportKey {
                     self?.showAlert(title: "", message: "You must input unlock password")
                     return
                 }
-                self?.unlockWallet(cipher: decoded, password: password)
+                self?.unlockWallet(cipher: decoded, password: password, name: nickname)
             }
             pwdAlert.addAction(submit)
             pwdAlert.addAction(cancel)
@@ -103,26 +103,23 @@ class ImportWalletViewController: UIViewController, ImportKey {
         }
     }
     
-    func unlockWallet(cipher: String, password: String) {
+    func unlockWallet(cipher: String, password: String, name: String) {
         do {
             let wallet = try Wallet(cipherText: cipher)
             let keys = try wallet.unlock(password: password)
             
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyyMMdd"
-            let date = Date()
-            let name = dateFormatter.string(from: date)
-            
-            for key in keys {
+            for object in keys.enumerated() {
+                let suffix = keys.count == 1 ? "" : "-key-\((object.offset + 1))"
+                
                 let privateKey: String
-                switch key.pri.curve {
+                switch object.element.pri.curve {
                 case .k1:
-                    privateKey = key.pri.bytes.toEosioK1PrivateKey
+                    privateKey = object.element.pri.bytes.toEosioK1PrivateKey
                 case .r1:
-                    privateKey = key.pri.bytes.toEosioR1PrivateKey
+                    privateKey = object.element.pri.bytes.toEosioR1PrivateKey
                 }
                 
-                try importKey(privateKey, name: name)
+                try importKey(privateKey, name: name + suffix)
             }
         } catch {
             self.showAlert(title: "", message: error.localizedDescription)
