@@ -134,14 +134,26 @@ class AuthenticatorDetailsTableViewController: UITableViewController {
             let secondConfirm = UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
                 self?.deleteKey(validPublicKey)
             }
-            let secondCancel = UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil)
+            let secondCancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            
+            if let popoverController = secondAlert.popoverPresentationController, let superView = self?.view {
+                popoverController.sourceView = superView
+                popoverController.sourceRect = CGRect(x: superView.bounds.midX, y: superView.bounds.midY, width: 0, height: 0)
+                popoverController.permittedArrowDirections = []
+            }
+            
             secondAlert.addAction(secondConfirm)
             secondAlert.addAction(secondCancel)
             self?.present(secondAlert, animated: true, completion: nil)
         }
-        let cancelAction = UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(confirmAction)
         alertController.addAction(cancelAction)
+        if let popoverController = alertController.popoverPresentationController {
+            popoverController.sourceView = self.view
+            popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+            popoverController.permittedArrowDirections = []
+        }
         self.present(alertController, animated: true, completion: nil)
     }
     
