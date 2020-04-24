@@ -43,8 +43,11 @@ class ImportWalletViewController: UIViewController, ImportKey {
     
     let vault: EosioVault = EosioVault(accessGroup: Constants.vaultAccessGroup)
     
+    @IBOutlet var nicknameHelperLabel: UILabel!
     @IBOutlet var nicknameField: UITextField!
+    @IBOutlet var walletHelperLabel: UILabel!
     @IBOutlet var textView: UITextView!
+    @IBOutlet var pasteBtn: UIButton!
     @IBOutlet var openFileBtn: UIButton!
 
     override func viewDidLoad() {
@@ -54,9 +57,16 @@ class ImportWalletViewController: UIViewController, ImportKey {
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationController?.navigationBar.largeTitleTextAttributes = EosioAppearance.navBarLargeTitleAttributes
         
+        nicknameField.attributedPlaceholder = NSAttributedString(string: "Choose Nickname", attributes: EosioAppearance.placeHolderStringAttributes)
+
         textView.layer.borderColor = UIColor.customDarkBlue.cgColor
         textView.layer.borderWidth = 1.0
         textView.layer.cornerRadius = 6.0
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        pasteBtn.isHidden = UIPasteboard.general.string == nil
     }
     
     @IBAction func cancelTapped(_ sender: UIBarButtonItem) {
@@ -71,6 +81,14 @@ class ImportWalletViewController: UIViewController, ImportKey {
         let documentVC = DocumentBrowserViewController()
         documentVC.browserViewController.delegate = self
         self.present(documentVC, animated: true, completion: nil)
+    }
+    
+    @IBAction func nicknameFieldDidEndEditing(_ sender: UITextField) {
+        self.nicknameHelperLabel.isHidden = sender.text?.isEmpty ?? true
+    }
+
+    @IBAction func nicknameValueChanged(_ sender: UITextField) {
+        self.nicknameHelperLabel.isHidden = false
     }
     
     @IBAction func importWalletKeys(_ sender: UIButton!) {
