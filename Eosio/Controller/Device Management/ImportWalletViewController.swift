@@ -46,27 +46,7 @@ class ImportWalletViewController: UIViewController, ImportKey {
     @IBOutlet var nicknameField: UITextField!
     @IBOutlet var textView: UITextView!
     @IBOutlet var openFileBtn: UIButton!
-    
-    var accessoryViewBottom: NSLayoutConstraint!
-    lazy var accessoryView: UIView = {
-        let accessoryView = UIView()
-        accessoryView.backgroundColor = UIColor(white: 1, alpha: 0.8)
-        accessoryView.translatesAutoresizingMaskIntoConstraints = false
-        let btn = UIButton(type: .custom)
-        btn.addTarget(self, action: #selector(dismissKeyboard(_:)), for: .touchUpInside)
-        btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.setImage(UIImage(named: "dismissKeyboard"), for: .normal)
-        btn.sizeToFit()
-        accessoryView.addSubview(btn)
-        accessoryView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[btn]-16-|", options: [], metrics: nil, views: ["btn": btn]))
-        accessoryView.addConstraint(NSLayoutConstraint(item: btn, attribute: .centerY, relatedBy: .equal, toItem: accessoryView, attribute: .centerY, multiplier: 1.0, constant: 0))
-        return accessoryView
-    }()
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Add Auth"
@@ -77,53 +57,6 @@ class ImportWalletViewController: UIViewController, ImportKey {
         textView.layer.borderColor = UIColor.customDarkBlue.cgColor
         textView.layer.borderWidth = 1.0
         textView.layer.cornerRadius = 6.0
-        
-        view.addSubview(accessoryView)
-        accessoryViewBottom = NSLayoutConstraint(item: accessoryView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 40)
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[accessory]|", options: [], metrics: nil, views: ["accessory": accessoryView]))
-        view.addConstraints([accessoryViewBottom, NSLayoutConstraint(item: accessoryView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 40)])
-    
-    
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(keyboardWillShow),
-            name: UIResponder.keyboardWillShowNotification,
-            object: nil
-        )
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(keyboardWillHide(_:)),
-            name: UIResponder.keyboardWillHideNotification,
-            object: nil
-        )
-    }
-    
-    @objc func keyboardWillShow(_ notification: Notification) {
-        guard let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
-            return
-        }
-        guard let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber else {
-            return
-        }
-        guard let curve = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber else {
-            return
-        }
-        
-        let keyboardRectangle = keyboardFrame.cgRectValue
-        let keyboardHeight = keyboardRectangle.height
-        accessoryViewBottom.constant = -keyboardHeight
-        UIView.animate(withDuration: TimeInterval(duration.doubleValue), delay: 0, options: UIView.AnimationOptions(rawValue: UInt(curve.intValue)), animations: {
-            self.view.layoutIfNeeded()
-        }, completion: nil)
-    }
-    
-    @objc func keyboardWillHide(_ notification: Notification) {
-        accessoryViewBottom.constant = 40
-    }
-    
-    @objc func dismissKeyboard(_ sender: UIButton) {
-        nicknameField.resignFirstResponder()
-        textView.resignFirstResponder()
     }
     
     @IBAction func cancelTapped(_ sender: UIBarButtonItem) {
